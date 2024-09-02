@@ -44,7 +44,7 @@ public class BoardDTO {
                 .user(user)
                 .boardTime(boardTime)
                 .calculateTime(calculateTime)
-                .boardLikeCount(boardLikeCount)
+                .boardHeartCount(boardLikeCount)
                 .boardCommentCount(boardCommentCount)
                 .build();
 

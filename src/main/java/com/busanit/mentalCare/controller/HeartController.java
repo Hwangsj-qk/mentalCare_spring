@@ -16,9 +16,8 @@ import java.util.Map;
 public class HeartController {
 
     private final HeartService heartService;
-    private final UserService userService;
 
-    @PostMapping("/up/{boardId}")
+    @PostMapping("/count/{boardId}")
     public ResponseEntity<Map<String, Integer>> addHeart(@PathVariable("boardId") Long boardId, @RequestBody User user) {
         Integer count = heartService.addHeart(boardId, user);
         Map<String, Integer> map = new HashMap<>();

@@ -9,7 +9,6 @@ import com.busanit.mentalCare.repository.BoardRepository;
 import com.busanit.mentalCare.repository.ChildrenCommentRepository;
 import com.busanit.mentalCare.repository.CommentRepository;
 import com.busanit.mentalCare.repository.UserRepository;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;

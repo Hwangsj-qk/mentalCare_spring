@@ -63,7 +63,7 @@ public class Board {
     // 공감 갯수를 담을 필드
     @ColumnDefault("0")
     @Column(name = "board_like_count", nullable = false)
-    private Integer boardLikeCount;
+    private Integer boardHeartCount;
 
     @ColumnDefault("0")
     @Column(name = "board_comment_count", nullable = false)
@@ -77,7 +77,7 @@ public class Board {
             commentDTOList = comments.stream().map(Comment::toDTO).toList();
         }
         return new BoardDTO(boardId, boardTag, boardTitle, boardTime, calculateTime, boardContent,
-                user.getUserNickname(), boardLikeCount, boardCommentCount, commentDTOList);
+                user.getUserNickname(), boardHeartCount, boardCommentCount, commentDTOList);
     }
 
 }

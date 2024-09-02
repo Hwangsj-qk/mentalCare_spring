@@ -24,7 +24,6 @@ public class BoardController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBoard);
     }
 
-
     // select (게시글 검색) - 커스텀 메서드
     @GetMapping("userNickname/{userNickname}")
     public List<BoardDTO> getBoardByUserNickName(@PathVariable("userNickname") String userNickName) {

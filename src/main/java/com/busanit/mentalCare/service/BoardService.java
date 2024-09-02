@@ -81,7 +81,7 @@ public class BoardService {
             if(board.getBoardTag() != null) {
                 board.setBoardTag(updateBoard.getBoardTag());
             }
-            System.out.println("board.getBoardLikeCount() = " + board.getBoardLikeCount());
+            System.out.println("board.getBoardLikeCount() = " + board.getBoardHeartCount());
             // 글 작성자는 바꿀 수 없도록 함
             return boardRepository.save(board).toDTO();
         } else {
