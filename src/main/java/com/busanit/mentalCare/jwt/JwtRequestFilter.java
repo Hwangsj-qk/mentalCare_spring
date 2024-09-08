@@ -1,5 +1,8 @@
 package com.busanit.mentalCare.jwt;
 
+import com.busanit.mentalCare.dto.McUserDTO;
+import com.busanit.mentalCare.service.CustomMcUserDetailsService;
+import com.busanit.mentalCare.service.McUserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
 
 // 스프링 웹 필터 클래스를 상속받은 Jwt 요청 필터
 @Component      // 컴포넌트(스프링) 등록
@@ -25,7 +30,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private JwtUtil jwtUtil;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, IOException {
 
         // HTTP 요청 헤더에서 Authorization 정보를 가져옴
         String authorization = request.getHeader("Authorization");
@@ -42,7 +47,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         // 토큰에 사용자 이름은 존재하는데, SecurityContextHlder 에 인증이 되지 않은 경우
         if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             // 사용자 정보를 불러옴
-            McUserDto dto = this.mc_userService.getByUserId(userId).toEntity().toDto();
+            McUserDTO dto = this.mc_userService.getByUserId(userId).toEntity().toDto();
 
             UserDetails userDetails = customMcUserDetailsService.loadUserByUsername(dto.getUserId());
 

@@ -10,6 +10,7 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 public class JwtUtil {
     // SHA 256 암호화 알고리즘으로 생성한 키 (너무 약한 비밀번호는 불가)
