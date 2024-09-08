@@ -1,44 +1,41 @@
 package com.busanit.mentalCare.dto;
 
-import com.busanit.mentalCare.entity.User;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.busanit.mentalCare.model.McUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-
+public class McUserDTO {
+    private String userId;
     private String userPw;
     private String userNickname;
     private char userGender;
-    private int userAge;
+    private String userBirth;
     private String userEmail;
     private String userPhonenumber;
-    // private String user_joindate;
-    // private boolean user_secession;
+    private LocalDate userJoindate;
+    private boolean userSecession;
 
     // DTO -> 엔티티 (엔티티에 @Builder 적용, 빌더 패턴 사용)
-    public User toEntity() {
+    public McUser toEntity() {
         // DTO -> 엔티티 필드 매핑
-        User user = User.builder()
+        McUser user = McUser.builder()
+                .userId(userId)
                 .userPw(userPw)
                 .userNickname(userNickname)
                 .userGender(userGender)
-                .userAge(userAge)
+                .userBirth(userBirth)
                 .userEmail(userEmail)
                 .userPhonenumber(userPhonenumber)
-                .userId(userId)
-                //.user_joindate(user_joindate)
-                // .user_secession(user_secession)
+                .userJoindate(userJoindate)
+                .userSecession(userSecession)
                 .build();
+
         return user;
     }
 }

@@ -1,11 +1,11 @@
 package com.busanit.mentalCare.service;
 
-import com.busanit.mentalCare.entity.Board;
-import com.busanit.mentalCare.entity.Heart;
-import com.busanit.mentalCare.entity.User;
+import com.busanit.mentalCare.model.Board;
+import com.busanit.mentalCare.model.Heart;
+import com.busanit.mentalCare.model.McUser;
 import com.busanit.mentalCare.repository.BoardRepository;
 import com.busanit.mentalCare.repository.HeartRepository;
-import com.busanit.mentalCare.repository.UserRepository;
+import com.busanit.mentalCare.repository.McUserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,15 +16,15 @@ import org.springframework.stereotype.Service;
 public class HeartService {
 
     private final BoardService boardService;
-    private final BoardRepository boardRepository;
     private final HeartRepository heartRepository;
-    private final UserRepository userRepository;
+    private final McUserRepository mcUserRepository;
 
-    public Integer addHeart(Long boardId, User user) {
+
+    public Integer addHeart(Long boardId, McUser user) {
         // 공감을 추가할 게시판(Board)의 ID
         Board board = boardService.findBoardId(boardId);
         // 공감을 추가한 대상자(User)의 ID
-        User findUser = userRepository.findById(user.getUserId()).orElse(null);
+        McUser findUser = mcUserRepository.findById(user.getUserId()).orElse(null);
 
         // existsByUseAndBoard 메소드를 통해 해당 게시물에 대상자가 이미 공감을 했는지 여부 검토
         if(!heartRepository.existsByUserAndBoard(findUser, board)) {

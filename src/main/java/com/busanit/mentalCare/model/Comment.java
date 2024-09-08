@@ -1,4 +1,4 @@
-package com.busanit.mentalCare.entity;
+package com.busanit.mentalCare.model;
 
 import com.busanit.mentalCare.dto.ChildrenCommentDTO;
 import com.busanit.mentalCare.dto.CommentDTO;
@@ -33,7 +33,7 @@ public class Comment {
     // @JoinColumn(name = "user_id")
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private McUser user;
 
     @Column(name = "comment_content")
     private String commentContent;

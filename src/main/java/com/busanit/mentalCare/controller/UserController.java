@@ -1,8 +1,5 @@
 package com.busanit.mentalCare.controller;
 
-import com.busanit.mentalCare.dto.UserDto;
-import com.busanit.mentalCare.entity.User;
-import com.busanit.mentalCare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

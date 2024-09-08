@@ -1,6 +1,6 @@
 package com.busanit.mentalCare.dto;
 
-import com.busanit.mentalCare.entity.*;
+import com.busanit.mentalCare.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +35,7 @@ public class BoardDTO {
 
 
     // DTO -> Entity (엔티티에 @Builder 적용, 빌더 패턴 적용)
-    public Board toEntity(User user) {
+    public Board toEntity(McUser user) {
         // DTO -> 엔티티 필드로 매핑
         Board board = Board.builder()
                 .boardTitle(boardTitle)

@@ -1,0 +1,39 @@
+package com.busanit.mentalCare.model;
+
+import com.busanit.mentalCare.dto.EmotionDiaryDTO;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "emotionDiary")
+public class EmotionDiary {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long edId;
+
+    @ManyToOne(targetEntity = com.busanit.mentalCare.model.McUser.class)
+    @JoinColumn(name = "userId")
+    private McUser mcUser;
+
+
+    @ManyToOne(targetEntity = Emotion.class)
+    @JoinColumn(name = "emotionId")
+    private Emotion emotion;
+
+    @Column(nullable = true)
+    private String edReason;
+
+    @Column(nullable = false)
+    private String edDate;
+
+    public EmotionDiaryDTO toDto() {
+        return new EmotionDiaryDTO(edId, mcUser.getUserId(), emotion.getEmotionId(), edReason, edDate);
+    }
+}

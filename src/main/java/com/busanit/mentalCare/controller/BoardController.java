@@ -1,7 +1,7 @@
 package com.busanit.mentalCare.controller;
 
 import com.busanit.mentalCare.dto.BoardDTO;
-import com.busanit.mentalCare.entity.TagType;
+import com.busanit.mentalCare.model.TagType;
 import com.busanit.mentalCare.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

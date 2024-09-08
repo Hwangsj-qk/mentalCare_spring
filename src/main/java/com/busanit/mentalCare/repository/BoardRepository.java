@@ -1,7 +1,7 @@
 package com.busanit.mentalCare.repository;
 
-import com.busanit.mentalCare.entity.Board;
-import com.busanit.mentalCare.entity.TagType;
+import com.busanit.mentalCare.model.Board;
+import com.busanit.mentalCare.model.TagType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

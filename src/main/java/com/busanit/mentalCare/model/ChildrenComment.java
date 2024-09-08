@@ -1,4 +1,4 @@
-package com.busanit.mentalCare.entity;
+package com.busanit.mentalCare.model;
 
 import com.busanit.mentalCare.dto.ChildrenCommentDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,7 +31,7 @@ public class ChildrenComment {
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
-    private User user;
+    private McUser user;
 
     @Column(name = "children_content")
     private String childrenContent;

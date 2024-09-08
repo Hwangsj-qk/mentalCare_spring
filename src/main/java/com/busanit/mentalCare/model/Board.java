@@ -1,4 +1,4 @@
-package com.busanit.mentalCare.entity;
+package com.busanit.mentalCare.model;
 
 import com.busanit.mentalCare.dto.BoardDTO;
 import com.busanit.mentalCare.dto.CommentDTO;
@@ -38,7 +38,7 @@ public class Board {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private McUser user;
 
     @CreatedDate
     @Column(name = "board_time")

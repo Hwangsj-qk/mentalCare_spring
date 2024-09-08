@@ -1,13 +1,13 @@
 package com.busanit.mentalCare.service;
 
 import com.busanit.mentalCare.dto.BoardDTO;
-import com.busanit.mentalCare.entity.Board;
-import com.busanit.mentalCare.entity.TagType;
-import com.busanit.mentalCare.entity.Time;
-import com.busanit.mentalCare.entity.User;
+import com.busanit.mentalCare.model.Board;
+import com.busanit.mentalCare.model.McUser;
+import com.busanit.mentalCare.model.TagType;
+import com.busanit.mentalCare.model.Time;
 import com.busanit.mentalCare.repository.BoardRepository;
 import com.busanit.mentalCare.repository.CommentRepository;
-import com.busanit.mentalCare.repository.UserRepository;
+import com.busanit.mentalCare.repository.McUserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,13 +21,10 @@ public class BoardService {
 
     @Autowired
    private BoardRepository boardRepository;
-
     @Autowired
     private CommentRepository commentRepository;
-
     @Autowired
-    private UserRepository userRepository;
-
+    private McUserRepository mcUserRepository;
 
     // 모든 게시글 조회
     public List<BoardDTO> getAllBoards() {
@@ -36,26 +33,22 @@ public class BoardService {
         return boards.stream().map(Board::toDTO).toList();
     }
 
+    // 작성 글 유형에 따른 게시글 조회
     public List<BoardDTO> getBoardByTagType(TagType tag) {
         List<Board> board = boardRepository.findByBoardTag(tag);
         return board.stream().map(Board::toDTO).toList();
     }
 
+    // 게시글 아이디에 따른 게시글 조회
     public BoardDTO getBoardById(Long boardId) {
         Board board = boardRepository.findById(boardId).orElse(null);
         return board.toDTO();
     }
 
-
-
-
     // 게시글 생성
     @Transactional
     public BoardDTO createBoard(@RequestBody BoardDTO dto) {
-        User user = userRepository.findByUserNickname(dto.getUserNickname());
-        System.out.println(user);
-        System.out.println("board entity:"+ dto.toEntity(user));
-
+        McUser user = mcUserRepository.findByUserNickname(dto.getUserNickname());
         Board saved = boardRepository.save(dto.toEntity(user));
         saved.setCalculateTime(Time.getTimeDifference(saved.getBoardTime(), LocalDateTime.now()));
         return saved.toDTO();
@@ -66,7 +59,6 @@ public class BoardService {
     public BoardDTO updateBoard(Long board_id, BoardDTO updateBoard) {
         Board board = boardRepository.findById(board_id).orElse(null);
 
-        System.out.println("updateboard" + board.getBoardTitle());
         if (board != null) {
             // 게시글 제목 변경
             if (board.getBoardTitle() != null) {
@@ -89,6 +81,7 @@ public class BoardService {
         }
     }
 
+    // 게시글 삭제
     @Transactional
     public BoardDTO DeleteBoard(Long board_id) {
         Board board = boardRepository.findById(board_id).orElse(null);

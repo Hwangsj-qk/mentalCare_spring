@@ -1,14 +1,14 @@
 package com.busanit.mentalCare.service;
 
 import com.busanit.mentalCare.dto.ChildrenCommentDTO;
-import com.busanit.mentalCare.entity.Board;
-import com.busanit.mentalCare.entity.ChildrenComment;
-import com.busanit.mentalCare.entity.Comment;
-import com.busanit.mentalCare.entity.User;
+import com.busanit.mentalCare.model.Board;
+import com.busanit.mentalCare.model.ChildrenComment;
+import com.busanit.mentalCare.model.Comment;
+import com.busanit.mentalCare.model.McUser;
 import com.busanit.mentalCare.repository.BoardRepository;
 import com.busanit.mentalCare.repository.ChildrenCommentRepository;
 import com.busanit.mentalCare.repository.CommentRepository;
-import com.busanit.mentalCare.repository.UserRepository;
+import com.busanit.mentalCare.repository.McUserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -21,20 +21,14 @@ import java.util.List;
 public class ChildrenCommentService {
     @Autowired
     private CommentRepository commentRepository;
-
     @Autowired
     private BoardRepository boardRepository;
-
     @Autowired
-    private UserRepository userRepository;
-
+    private McUserRepository mcUserRepository;
     @Autowired
     private ChildrenCommentRepository childrenRepository;
-
     @PersistenceContext
     private EntityManager entityManager;
-
-
 
     // 엔티티 -> DTO로 변환하여 전달
     public List<ChildrenCommentDTO> getAllChildren() {
@@ -50,7 +44,7 @@ public class ChildrenCommentService {
 
     @Transactional
     public ChildrenCommentDTO createChildren(ChildrenCommentDTO dto) {
-        User user = userRepository.findByUserNickname(dto.getUserNickname());
+        McUser user = mcUserRepository.findByUserNickname(dto.getUserNickname());
         Comment comment = commentRepository.findById(dto.getCommentId())
                 .orElseThrow(() -> new RuntimeException("댓글이 존재하지 않는 답글"));
 

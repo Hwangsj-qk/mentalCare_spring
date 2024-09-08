@@ -1,13 +1,13 @@
 package com.busanit.mentalCare.service;
 
 import com.busanit.mentalCare.dto.CommentDTO;
-import com.busanit.mentalCare.entity.Board;
-import com.busanit.mentalCare.entity.ChildrenComment;
-import com.busanit.mentalCare.entity.Comment;
-import com.busanit.mentalCare.entity.User;
+import com.busanit.mentalCare.model.Board;
+import com.busanit.mentalCare.model.ChildrenComment;
+import com.busanit.mentalCare.model.Comment;
+import com.busanit.mentalCare.model.McUser;
 import com.busanit.mentalCare.repository.BoardRepository;
 import com.busanit.mentalCare.repository.CommentRepository;
-import com.busanit.mentalCare.repository.UserRepository;
+import com.busanit.mentalCare.repository.McUserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +19,10 @@ public class CommentService {
 
     @Autowired
     private CommentRepository commentRepository;
-
     @Autowired
     private BoardRepository boardRepository;
-
     @Autowired
-    private UserRepository userRepository;
+    private McUserRepository mcUserRepository;
 
 
     // 엔티티 -> DTO로 변환하여 전달
@@ -47,7 +45,7 @@ public class CommentService {
                 .orElseThrow(() -> new RuntimeException("존재하지 않은 게시판"));
 
         // 2. 유저 정보를 데이터베이스에서 가져옵니다.
-        User user = userRepository.findByUserNickname(dto.getUserNickname());
+        McUser user = mcUserRepository.findByUserNickname(dto.getUserNickname());
 
         // 3. 댓글(Comment) 객체를 생성합니다.
         Comment comment = dto.toEntity(board, user);

@@ -1,8 +1,6 @@
 package com.busanit.mentalCare.controller;
 
-import com.busanit.mentalCare.dto.ChildrenCommentDTO;
 import com.busanit.mentalCare.dto.CommentDTO;
-import com.busanit.mentalCare.entity.Comment;
 import com.busanit.mentalCare.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

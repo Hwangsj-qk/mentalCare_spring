@@ -1,4 +1,4 @@
-package com.busanit.mentalCare.entity;
+package com.busanit.mentalCare.model;
 
 public enum TagType {
     COMMON("COMMON"), MENTAL("MENTAL"), CHEERING("CHEERING");

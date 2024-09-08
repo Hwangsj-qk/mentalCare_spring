@@ -1,4 +1,4 @@
-package com.busanit.mentalCare.entity;
+package com.busanit.mentalCare.model;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
