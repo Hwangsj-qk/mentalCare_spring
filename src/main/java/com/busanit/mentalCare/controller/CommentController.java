@@ -16,8 +16,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    // 수정 기능
-    @PutMapping("/{commentId}")
+    @PutMapping("/update/{commentId}")
     ResponseEntity<CommentDTO> updateComment(@PathVariable Long commentId,  @RequestBody CommentDTO updatedComment) {
         CommentDTO comment = commentService.updateComment(commentId, updatedComment);
         if(comment == null) {
@@ -26,14 +25,14 @@ public class CommentController {
         return ResponseEntity.ok(comment);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<CommentDTO> createComment(@RequestBody CommentDTO comment) {
         CommentDTO createdComment = commentService.createComment(comment);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdComment);
     }
 
     // 삭제 처리
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping("/delete/{commentId}")
     public ResponseEntity<CommentDTO> deleteComment(@PathVariable Long commentId) {
         CommentDTO commentDTO = commentService.deleteComment(commentId);
         if(commentDTO == null) {
@@ -43,15 +42,14 @@ public class CommentController {
     }
 
 
-    @GetMapping
+    @GetMapping("/getAllComments")
     public ResponseEntity<List<CommentDTO>> getAllComments() {
         List<CommentDTO> allComments = commentService.getAllComments();
         return ResponseEntity.ok(allComments);
     }
 
-    @GetMapping("boardId/{boardId}")
+    @GetMapping("/boardId/{boardId}")
     public List<CommentDTO> getCommentByBoardId(@PathVariable("boardId") Long boardId) {
         return commentService.getCommentByBoardId(boardId);
     }
-
 }

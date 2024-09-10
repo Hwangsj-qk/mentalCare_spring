@@ -14,12 +14,10 @@ import java.util.List;
 @RequestMapping("/children")
 @RestController
 public class ChildrenCommentController {
-
     @Autowired
     private ChildrenCommentService childrenService;
 
-    // 수정 기능
-    @PutMapping("/{childrenId}")
+    @PutMapping("/update/{childrenId}")
     ResponseEntity<ChildrenCommentDTO> updateChildren(@PathVariable Long childrenId, @RequestBody ChildrenCommentDTO updatedChildren) {
         ChildrenCommentDTO children = childrenService.updateChildren(childrenId, updatedChildren);
         if(children == null) {
@@ -28,14 +26,13 @@ public class ChildrenCommentController {
         return ResponseEntity.ok(children);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<ChildrenCommentDTO> createChildren(@RequestBody ChildrenCommentDTO children) {
         ChildrenCommentDTO createdChildren = childrenService.createChildren(children);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdChildren);
     }
 
-
-    @DeleteMapping("/{childrenId}")
+    @DeleteMapping("/delete/{childrenId}")
     public ResponseEntity<ChildrenCommentDTO> deleteChildren(@PathVariable Long childrenId) {
         ChildrenCommentDTO childrenDTO = childrenService.deleteChildrenComment(childrenId);
         if(childrenDTO == null) {
@@ -44,15 +41,14 @@ public class ChildrenCommentController {
         return ResponseEntity.ok(childrenDTO);
     }
 
-    @GetMapping
+    @GetMapping("/getAllChildren")
     public ResponseEntity<List<ChildrenCommentDTO>> getAllChildren() {
         List<ChildrenCommentDTO> allChildren = childrenService.getAllChildren();
         return ResponseEntity.ok(allChildren);
     }
 
-    @GetMapping("commentId/{commentId}")
+    @GetMapping("/commentId/{commentId}")
     public List<ChildrenCommentDTO> getChildrenByCommentId(@PathVariable("commentId") Long commentId) {
         return childrenService.getChildrenByCommentId(commentId);
     }
-
 }
