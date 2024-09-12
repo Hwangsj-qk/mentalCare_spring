@@ -29,8 +29,6 @@ public class Comment {
     @Column(name = "comment_id", nullable = false)
     private Long commentId;
 
-    //@ManyToOne
-    // @JoinColumn(name = "user_id")
     @ManyToOne
     @JoinColumn(name = "user_id")
     private McUser user;
@@ -42,7 +40,6 @@ public class Comment {
     @Column(name = "comment_time")
     private LocalDateTime commentTime;
 
-    // 다 대 1 관계
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "board_id")
@@ -53,7 +50,6 @@ public class Comment {
     @JsonIgnore
     private List<ChildrenComment> childrenComments;
 
-    // 엔티티 -> DTO 변환 메서드 (user에 대해서 선생님께 여쭤보기)
     public CommentDTO toDTO() {
         // 댓글에 게시글 ID가 없는 경우
         Long boardId = 0L;

@@ -24,9 +24,6 @@ public  class CommentDTO {
     private Long boardId;
     private List<ChildrenCommentDTO> childrenComments;
 
-
-
-
     public Comment toEntity(Board board, McUser user) {
         Comment comment = Comment.builder()
                 .commentId(commentId)

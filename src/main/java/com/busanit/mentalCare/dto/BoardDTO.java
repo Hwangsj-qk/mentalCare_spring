@@ -18,15 +18,6 @@ public class BoardDTO {
     private String boardTitle;
     private LocalDateTime boardTime;
     private String calculateTime;
-
-    public void setCalculateTime(String calculateTime) {
-        this.calculateTime = Time.getTimeDifference(boardTime, LocalDateTime.now());
-    }
-
-    public String getCalculateTime() {
-        return Time.getTimeDifference(boardTime, LocalDateTime.now());
-    }
-
     private String boardContent;
     private String userNickname;
     private int boardLikeCount;

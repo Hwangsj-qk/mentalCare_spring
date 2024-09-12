@@ -3,6 +3,7 @@ package com.busanit.mentalCare.model;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+// 상대적 시간을 표현하기 위한 클래스
 public class Time {
 
     public static String getTimeDifference(LocalDateTime pastTime, LocalDateTime currentTime) {

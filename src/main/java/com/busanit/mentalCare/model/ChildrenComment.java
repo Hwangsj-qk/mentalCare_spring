@@ -26,8 +26,6 @@ public class ChildrenComment {
     @Column(name = "children_id", nullable = false)
     private Long childrenId;
 
-    //@ManyToOne
-    // @JoinColumn(name = "user_id")
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
@@ -45,8 +43,6 @@ public class ChildrenComment {
     @JsonIgnore
     private Comment comment;
 
-
-    // 엔티티 -> DTO 변환 메서드
     public ChildrenCommentDTO toDTO() {
         Long commentId = 0L;
         if(comment != null) {

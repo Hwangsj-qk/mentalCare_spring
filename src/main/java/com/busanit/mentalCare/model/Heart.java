@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 
 import static jakarta.persistence.FetchType.LAZY;
 
-;
-
 @Entity
 @Data
 @NoArgsConstructor @AllArgsConstructor

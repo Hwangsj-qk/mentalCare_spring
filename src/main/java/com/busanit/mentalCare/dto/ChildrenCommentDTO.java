@@ -22,7 +22,6 @@ public class ChildrenCommentDTO {
     private Long commentId;
 
 
-
     public ChildrenComment toEntity(Comment comment, McUser user) {
         return ChildrenComment.builder()
                 .childrenId(childrenId)

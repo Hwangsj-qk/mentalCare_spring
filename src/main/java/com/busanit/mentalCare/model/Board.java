@@ -44,6 +44,7 @@ public class Board {
     @Column(name = "board_time")
     private LocalDateTime boardTime;
 
+    // 상대적 시간을 나타내는 필드
     private String calculateTime;
 
     public void setCalculateTime(String calculateTime) {
