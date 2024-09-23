@@ -23,7 +23,6 @@ public class ChildrenComment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "children_id", nullable = false)
     private Long childrenId;
 
     @ManyToOne
@@ -31,7 +30,6 @@ public class ChildrenComment {
     @JsonIgnore
     private McUser user;
 
-    @Column(name = "children_content")
     private String childrenContent;
 
     @CreatedDate

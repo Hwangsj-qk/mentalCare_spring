@@ -16,7 +16,6 @@ import java.util.List;
 
 @Service
 public class CommentService {
-
     @Autowired
     private CommentRepository commentRepository;
     @Autowired
@@ -63,7 +62,6 @@ public class CommentService {
         return saved.toDTO();
     }
 
-
     @Transactional
     public CommentDTO updateComment(Long comment_id, CommentDTO updateComment) {
         Comment comment = commentRepository.findById(comment_id).orElse(null);
@@ -81,7 +79,8 @@ public class CommentService {
 
     @Transactional
     public CommentDTO deleteComment(Long comment_id) {
-        Comment comment = commentRepository.findById(comment_id).orElseThrow(() -> new IllegalArgumentException("해당 댓글은 이미 존재하지 않습니다."));
+        Comment comment = commentRepository.findById(comment_id).orElseThrow(()
+                -> new IllegalArgumentException("해당 댓글은 이미 존재하지 않습니다."));
 
         // 댓글에 답글이 있는지 확인
         List<ChildrenComment> childrenComments = comment.getChildrenComments();
@@ -93,22 +92,20 @@ public class CommentService {
 
             // 답글 수만큼 board의 댓글 수 감소시킨 후 board 저장
             Board board = comment.getBoard();
-            // 댓글 갯수 음수 방지
-            board.setBoardCommentCount(board.getBoardCommentCount() + 1);
+            board.setBoardCommentCount(board.getBoardCommentCount() - 1);
             boardRepository.save(board);
+
         } else {
             // 답글이 없으면 댓글 완전 삭제
             commentRepository.delete(comment);
 
             Board board = comment.getBoard();
-            board.setBoardCommentCount(board.getBoardCommentCount() + 1);
+            board.setBoardCommentCount(board.getBoardCommentCount() - 1);
             boardRepository.save(board);
         }
         return comment.toDTO();
 
     }
-
-
 }
 
 

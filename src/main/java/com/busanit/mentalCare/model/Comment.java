@@ -26,18 +26,14 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_id", nullable = false)
     private Long commentId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private McUser user;
 
-    @Column(name = "comment_content")
     private String commentContent;
 
     @CreatedDate
-    @Column(name = "comment_time")
     private LocalDateTime commentTime;
 
     @ManyToOne

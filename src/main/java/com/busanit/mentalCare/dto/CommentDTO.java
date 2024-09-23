@@ -18,6 +18,8 @@ import java.util.List;
 public  class CommentDTO {
     private Long commentId;
     private String commentContent;
+
+    // 댓글 작성 시간에 대한 포맷 설정
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yy/MM/dd HH:mm")
     private LocalDateTime commentTime;
     private String userNickname;

@@ -3,7 +3,7 @@ package com.busanit.mentalCare.model;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-// 상대적 시간을 표현하기 위한 클래스
+// 상대적 시간을 표현하기 위한 메소드
 public class Time {
 
     public static String getTimeDifference(LocalDateTime pastTime, LocalDateTime currentTime) {
@@ -34,4 +34,8 @@ public class Time {
 
         return timeDifference.toString();
     }
+
+    /* Description
+    * - 게시판 작성 시간을 상대적 시간으로 계산하여 나타내기 위한 메소드
+    * - 현재 시간을 기준으로 작성 시간이 얼마나 지났는지에 대해 나타냄 */
 }

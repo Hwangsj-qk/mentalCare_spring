@@ -18,8 +18,7 @@ import java.util.List;
 
 @Service
 public class BoardService {
-
-    @Autowired
+    @Autowired // 자동 의존성 주입
    private BoardRepository boardRepository;
     @Autowired
     private CommentRepository commentRepository;

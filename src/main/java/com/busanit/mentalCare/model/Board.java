@@ -30,46 +30,36 @@ public class Board {
     private Long boardId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "board_tag")
     private TagType boardTag;
 
-    @Column(name = "board_title")
     private String boardTitle;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
     private McUser user;
 
-    @CreatedDate
-    @Column(name = "board_time")
+    @CreatedDate // 엔티티가 처음 생성될 때 자동으로 날짜나 시간을 기록하기 위해 사용되는 애노테이션
     private LocalDateTime boardTime;
 
     // 상대적 시간을 나타내는 필드
     private String calculateTime;
 
-    public void setCalculateTime(String calculateTime) {
-        calculateTime = Time.getTimeDifference(boardTime, LocalDateTime.now());
-        this.calculateTime = calculateTime;
-    }
-
-    @Column(name = "board_content")
     private String boardContent;
 
-
-    // 1 대 다 관계 (content - comment) -> 양방향 관계가 아니면 굳이 필요 없음
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Comment> comments;
 
     // 공감 갯수를 담을 필드
     @ColumnDefault("0")
-    @Column(name = "board_like_count", nullable = false)
     private Integer boardHeartCount;
 
     @ColumnDefault("0")
-    @Column(name = "board_comment_count", nullable = false)
     private int boardCommentCount;
 
+    public void setCalculateTime(String calculateTime) {
+        calculateTime = Time.getTimeDifference(boardTime, LocalDateTime.now());
+        this.calculateTime = calculateTime;
+    }
 
     // 엔티티 -> DTO
     public BoardDTO toDTO() {
